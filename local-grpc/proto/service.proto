@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package infer;
+
+message InferRequest {
+  string request_id = 1;
+  map<string, ExFeature> feature = 2;  // 通用输入输出
+}
+
+message InferResponse {
+  Status status = 1;
+  map<string, ExFeature> feature = 2;  // 通用输入输出
+}
+
+service LocalInferService {
+  rpc Infer(InferRequest) returns (InferResponse) {};
+}

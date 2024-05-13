@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package infer;
+
+message Int32Array {
+  repeated int32 int32_elems = 1 [packed = true];
+}
+
+message Int64Array {
+  repeated int64 int64_elems = 1 [packed = true];
+}
+
+message FloatArray {
+  repeated float float_elems = 1 [packed = true];
+}
+
+message StringArray {
+  repeated string str_elems = 1;
+}
+
+message BoolArray {
+  repeated bool bool_elems = 1;
+}
+
+message BytesArray {
+  repeated bytes bytes_elems = 1;
+}
+
+message ExFeature {
+  string name = 1;
+  oneof kind {
+    int64 int_val = 2;
+    Int64Array int_array = 3;
+    float float_val = 4;
+    FloatArray float_array = 5;
+    string str_val = 6;
+    StringArray str_array = 7;
+    bytes bytes_val = 8;
+    BytesArray bytes_array = 9;
+    bool bool_val = 10;
+    BoolArray bool_array = 11;
+    int32 int32_val = 12;
+    Int32Array int32_array = 13;
+  }
+}
+
+enum Status {
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    ERROR = 2;
+}
